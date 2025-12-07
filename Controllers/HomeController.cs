@@ -5,16 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace JustSupportSystem.Controllers
 {
-    public class HomeController : JBaseController
+    public class HomeController(JDBContext jDBContext) : JBaseController(jDBContext) 
     {
-         
-        public HomeController(JDBContext jDBContext) : base(jDBContext)
-        {
-
-        }
         public IActionResult Index()
         {
-            DbCtx.UserAccounts.FirstOrDefault();
+            JDB.UserAccounts.FirstOrDefault();
             return View();
         }
 

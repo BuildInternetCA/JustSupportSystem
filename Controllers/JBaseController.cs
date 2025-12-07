@@ -5,10 +5,12 @@ namespace JustSupportSystem.Controllers
 {
     public class JBaseController : Controller
     {
-        protected readonly JDBContext DbCtx;
+        protected JDBContext JDB;
+
         public JBaseController(JDBContext jDBContext)
         {
-            DbCtx = jDBContext;
+            JDB = jDBContext;
         }
+
     }
 }
