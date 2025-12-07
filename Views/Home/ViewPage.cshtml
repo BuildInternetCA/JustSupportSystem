@@ -1,0 +1,179 @@
+﻿
+@{
+    ViewData["Title"] = "ViewPage";
+}
+<a href="#" class="back-btn">← Back to Tickets</a>
+
+<div class="ticket-header">
+    <div class="ticket-title-row">
+        <span class="ticket-id">#TK-1047</span>
+        <h1 class="ticket-title">Unable to login to account</h1>
+    </div>
+
+    <div class="ticket-meta">
+        <div class="meta-item">
+            <span class="meta-label">Status</span>
+            <span class="meta-value">
+                <span class="status-badge status-open">Open</span>
+            </span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-label">Priority</span>
+            <span class="meta-value">
+                <span class="priority-badge priority-high">High</span>
+            </span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-label">Created By</span>
+            <span class="meta-value">Sarah Johnson</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-label">Created</span>
+            <span class="meta-value">Dec 6, 2025 2:30 PM</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-label">Last Updated</span>
+            <span class="meta-value">Dec 6, 2025 3:15 PM</span>
+        </div>
+    </div>
+
+    <div class="ticket-description">
+        <p>Hi there, I've been trying to login to my account for the past hour but keep getting an error message saying "Invalid credentials" even though I'm certain my password is correct. I've tried resetting my password twice but still can't access my account. This is urgent as I need to access important documents for a meeting tomorrow morning.</p>
+    </div>
+</div>
+
+<div class="main-content">
+    <div>
+        <div class="timeline">
+            <h2 class="timeline-title">Activity Timeline</h2>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-header">
+                    <span class="timeline-author">Sarah Johnson</span>
+                    <span class="timeline-time">2 hours ago</span>
+                </div>
+                <div class="timeline-content">
+                    Created ticket: Unable to login to account
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot status-change"></div>
+                <div class="timeline-header">
+                    <span class="timeline-author">System</span>
+                    <span class="timeline-time">2 hours ago</span>
+                </div>
+                <div class="timeline-content">
+                    Ticket automatically assigned to Support Team
+                    <div class="status-change-badge">Status: Open</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot status-change"></div>
+                <div class="timeline-header">
+                    <span class="timeline-author">Mike Rodriguez (Support)</span>
+                    <span class="timeline-time">1 hour ago</span>
+                </div>
+                <div class="timeline-content">
+                    Changed priority from Medium to High
+                    <div class="status-change-badge">Priority: High</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot reply"></div>
+                <div class="timeline-header">
+                    <span class="timeline-author">Mike Rodriguez (Support)</span>
+                    <span class="timeline-time">1 hour ago</span>
+                </div>
+                <div class="timeline-content">
+                    Hi Sarah, I'm sorry to hear you're having trouble accessing your account. I've checked our systems and can see multiple failed login attempts from your IP address. It appears your account may have been temporarily locked for security reasons after too many failed attempts. I'm going to unlock your account now and send you a secure password reset link to your registered email address. Please allow 5-10 minutes for the email to arrive and check your spam folder if you don't see it.
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot reply"></div>
+                <div class="timeline-header">
+                    <span class="timeline-author">Sarah Johnson</span>
+                    <span class="timeline-time">45 minutes ago</span>
+                </div>
+                <div class="timeline-content">
+                    Thank you Mike! I received the email and was able to reset my password. However, I'm still getting an error when trying to login. The message now says "Account temporarily suspended - contact support". Can you help with this?
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot reply"></div>
+                <div class="timeline-header">
+                    <span class="timeline-author">Mike Rodriguez (Support)</span>
+                    <span class="timeline-time">30 minutes ago</span>
+                </div>
+                <div class="timeline-content">
+                    I see the issue now. There's an outstanding payment on your account which has triggered an automatic suspension. I'm escalating this to our billing team to review. They should reach out within the next hour to help resolve this. In the meantime, I've made a note that you need urgent access for tomorrow's meeting.
+                </div>
+            </div>
+        </div>
+
+        <div class="reply-box">
+            <textarea placeholder="Write your reply..."></textarea>
+            <div class="reply-actions">
+                <button class="btn btn-primary">Send Reply</button>
+                <button class="btn btn-secondary">Add Internal Note</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="info-card">
+            <h3 class="info-card-title">Ticket Information</h3>
+            <div class="info-item">
+                <span class="info-label">Assigned To</span>
+                <span class="info-value">Mike Rodriguez</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Category</span>
+                <span class="info-value">Account Access</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Tags</span>
+                <span class="info-value">login, urgent</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Response Time</span>
+                <span class="info-value">1 hour</span>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <h3 class="info-card-title">Customer Information</h3>
+            <div class="info-item">
+                <span class="info-label">Name</span>
+                <span class="info-value">Sarah Johnson</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Email</span>
+                <span class="info-value">sarah.j@email.com</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Account Type</span>
+                <span class="info-value">Premium</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Member Since</span>
+                <span class="info-value">Jan 2023</span>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <h3 class="info-card-title">Actions</h3>
+            <div class="action-buttons">
+                <button class="btn btn-primary">Change Status</button>
+                <button class="btn btn-secondary">Assign to Me</button>
+                <button class="btn btn-secondary">Add Tags</button>
+                <button class="btn btn-secondary">Merge Ticket</button>
+            </div>
+        </div>
+    </div>
+</div>
