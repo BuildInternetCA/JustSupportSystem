@@ -1,0 +1,151 @@
+﻿@model UITable
+@{
+    var totalPages = ((double)Model.TotalRecords / (double)Model.PageSize);
+    var totalPageInt = Math.Round(totalPages);
+    if ((totalPages - totalPageInt) > 0.01)
+    {
+        totalPages += 1;
+    }
+    int TotalPages = (int)(totalPageInt < totalPages ? totalPages : totalPageInt);
+    ViewData["Title"] = Model.Title;
+}
+<div class="card">
+    <div class="card-table">
+        <div class="card-header">
+            <div class="row w-full">
+                <div class="col">
+                    <h3 class="card-title mb-0">@Model.Title</h3>
+                    <p class="text-secondary m-0">@Model.Description</p>
+                </div>
+                <div class="col-md-auto col-sm-12">
+                    <div class="ms-auto d-flex flex-wrap btn-list">
+                        @if (!string.IsNullOrEmpty(Model.SearchUrl))
+                        {
+                            <form action="@Model.SearchUrl">
+                                <div class="input-group input-group-flat w-auto">
+                                    <span class="input-group-text">
+                                        <!-- Download SVG icon from http://tabler.io/icons/icon/search -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1">
+                                            <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
+                                            <path d="M21 21l-6 -6"></path>
+                                        </svg>
+                                    </span>
+                                    <input id="advanced-table-search" type="text" class="form-control" autocomplete="off">
+                                </div>
+                            </form>
+                        }
+                        @if (Model.AddButton != null)
+                        {
+                            @Html.Raw(Model.AddButton.ToHtml())
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="advanced-table">
+            <div class="table-responsive">
+                <table class="table table-vcenter table-selectable">
+                    <thead>
+                        <tr>
+                            @foreach (var header in Model.Data.Headers.Where(p => p.Key >= 0).OrderBy(p => p.Key))
+                            {
+                                <th>@Html.Raw(header.Value)</th>
+                            }
+                            @if (Model.EnableActions)
+                            {
+                                <th>Action</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var d in Model.Data.Rows)
+                        {
+                            <tr>
+                                @foreach (var td in Model.Data.Headers.Where(p => p.Key >= 0).OrderBy(p => p.Key))
+                                {
+                                    <td>
+                                        @if (d.ContainsKey(td.Value))
+                                        {
+                                            @Html.Raw(d[td.Value])
+                                        }
+                                    </td>
+                                }
+
+                                @if (Model.EnableActions)
+                                {
+                                    <td class="text-center">
+                                        <div class="table-actions">
+                                            @if (Model.ViewButton != null)
+                                            {
+                                                @Html.Raw(Model.ViewButton.ToHtml(d))
+                                            }
+                                            @if (Model.EditButton != null)
+                                            {
+                                                @Html.Raw(Model.EditButton.ToHtml(d))
+                                            }
+
+                                            @if (Model.DeleteButton != null)
+                                            {
+                                                @Html.Raw(Model.DeleteButton.ToHtml(d))
+                                            }
+
+                                        </div>
+                                    </td>
+                                }
+
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer d-flex align-items-center">
+                <p class="m-0 text-secondary">
+                    Showing <span>@(((Model.PageNo - 1) * Model.PageSize) + 1)</span> to <span>@Model.Data.Rows.Count</span> of <span>@Model.TotalRecords</span> entries
+                </p>
+                <ul class="pagination m-0 ms-auto">
+                    <li class="page-item disabled">
+                        @if (Model.PageNo > 1)
+                        {
+                            <a href="@Model.PaginationUrl.Replace("[~pageNo]", (Model.PageNo - 1).ToString())" class="page-link" tabindex="-1" aria-disabled="true">
+                                <!-- Download SVG icon from http://tabler.io/icons/icon/chevron-left -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1">
+                                    <path d="M15 6l-6 6l6 6"></path>
+                                </svg>
+                                prev
+                            </a>
+                        }
+                        
+                    </li>
+                    
+                        @for (int i = 1; i <= TotalPages; i++)
+                        {
+                            var isActive = i == Model.PageNo;
+                            var className = isActive ? "page-link active" : "page-link";
+                        <li class="page-item">
+                            <a class="@className" href="@Model.PaginationUrl.Replace("[~pageNo]", (i).ToString())">@i</a>
+                        </li>
+                        }
+                   
+                    @if (Model.PageNo < TotalPages)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Model.PaginationUrl.Replace("[~pageNo]", (Model.PageNo + 1).ToString())">
+                                next
+                                <!-- Download SVG icon from http://tabler.io/icons/icon/chevron-right -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1">
+                                    <path d="M9 6l6 6l-6 6"></path>
+                                </svg>
+                            </a>
+                        </li>
+                    }
+                   
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+

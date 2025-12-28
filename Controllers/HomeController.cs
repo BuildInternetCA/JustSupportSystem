@@ -9,15 +9,8 @@ namespace JustSupportSystem.Controllers
     {
         public IActionResult Index()
         {
-            JDB.UserAccounts.FirstOrDefault();
             return View();
         }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         public IActionResult ViewPage()
         {
             return View();

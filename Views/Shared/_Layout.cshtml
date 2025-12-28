@@ -638,17 +638,33 @@
                     <!-- BEGIN NAVBAR MENU -->
                     <ul class="navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link" href="./#">
+                            <a class="nav-link" href="/">
                                 <span class="nav-link-title">Home</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/companies">
+                                <span class="nav-link-title">Companies</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/agents">
+                                <span class="nav-link-title">Agents</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin">
+                                <span class="nav-link-title">Admin</span>
                             </a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#navbar-third" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
-                                <span class="nav-link-title">My Tickets</span>
+                                <span class="nav-link-title">Support Tickets</span>
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="./#">Open</a>
-                                <a class="dropdown-item" href="./#">Closed</a>
+                                <a class="dropdown-item" href="/tickets?status=1">Opened</a>
+                                <a class="dropdown-item" href="/tickets?status=2">Closed</a>
+                                <a class="dropdown-item" href="/tickets?status=3">Escalated</a>
                             </div>
                         </li>
                     </ul>
@@ -663,11 +679,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - JustSupportSystem - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+   
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

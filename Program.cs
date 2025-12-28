@@ -1,4 +1,6 @@
 using JustSupportSystem.Models;
+using JustSupportSystem.System;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +20,8 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRewriter(new RewriteOptions().Add(new JRouteSecurity()));
 app.UseRouting();
 app.UseAuthorization();
 app.MapStaticAssets();

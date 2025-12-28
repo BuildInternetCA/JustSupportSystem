@@ -5,7 +5,8 @@ namespace JustSupportSystem.Controllers
 {
     public class TicketController(JDBContext jDBContext) : JBaseController(jDBContext)
     {
-        public IActionResult Index()
+        [Route("/tickets")]
+        public IActionResult Index(int pageNo, SupportTicketStatusEnum status)
         {
             return View();
         }
