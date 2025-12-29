@@ -58,46 +58,47 @@
                         </tr>
                     </thead>
                     <tbody>
-
-                        @foreach (var d in Model.Data.Rows)
+                        @if (Model.Data.Rows!=null)
                         {
-                            <tr>
-                                @foreach (var td in Model.Data.Headers.Where(p => p.Key >= 0).OrderBy(p => p.Key))
-                                {
-                                    <td>
-                                        @if (d.ContainsKey(td.Value))
-                                        {
-                                            @Html.Raw(d[td.Value])
-                                        }
-                                    </td>
-                                }
-
-                                @if (Model.EnableActions)
-                                {
-                                    <td class="text-center">
-                                        <div class="table-actions">
-                                            @if (Model.ViewButton != null)
+                            foreach (var d in Model.Data.Rows)
+                            {
+                                <tr>
+                                    @foreach (var td in Model.Data.Headers.Where(p => p.Key >= 0).OrderBy(p => p.Key))
+                                    {
+                                        <td>
+                                            @if (d.ContainsKey(td.Value))
                                             {
-                                                @Html.Raw(Model.ViewButton.ToHtml(d))
+                                                @Html.Raw(d[td.Value])
                                             }
-                                            @if (Model.EditButton != null)
-                                            {
-                                                @Html.Raw(Model.EditButton.ToHtml(d))
-                                            }
+                                        </td>
+                                    }
 
-                                            @if (Model.DeleteButton != null)
-                                            {
-                                                @Html.Raw(Model.DeleteButton.ToHtml(d))
-                                            }
+                                    @if (Model.EnableActions)
+                                    {
+                                        <td class="text-center">
+                                            <div class="table-actions">
+                                                @if (Model.ViewButton != null)
+                                                {
+                                                    @Html.Raw(Model.ViewButton.ToHtml(d))
+                                                }
+                                                @if (Model.EditButton != null)
+                                                {
+                                                    @Html.Raw(Model.EditButton.ToHtml(d))
+                                                }
 
-                                        </div>
-                                    </td>
-                                }
+                                                @if (Model.DeleteButton != null)
+                                                {
+                                                    @Html.Raw(Model.DeleteButton.ToHtml(d))
+                                                }
 
-                            </tr>
+                                            </div>
+                                        </td>
+                                    }
+
+                                </tr>
+                            }
+
                         }
-
-
                     </tbody>
                 </table>
             </div>

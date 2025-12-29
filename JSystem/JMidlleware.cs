@@ -1,6 +1,6 @@
 ﻿using JustSupportSystem.Models;
 
-namespace JustSupportSystem.System
+namespace JustSupportSystem.JSystem
 {
     public class JMidlleware
     {

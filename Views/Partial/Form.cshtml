@@ -5,14 +5,7 @@
     var formSetting = Model as FormDTO;
     ViewData["Title"] = formSetting.FormTitle;
 }
-<div class="forms-container">
-    <div class="form-card">
-        <div class="form-header">
-            <h2 class="form-title">@formSetting.FormTitle</h2>
-            <p class="form-subtitle">@formSetting.FormDescription</p>
-        </div>
-        @Html.Raw(form.ToHtml())
-    </div>
 
+<div class="col-md-12">
+    @Html.Raw(form.ToHtml())
 </div>
-

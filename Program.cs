@@ -1,5 +1,5 @@
 using JustSupportSystem.Models;
-using JustSupportSystem.System;
+using JustSupportSystem.JSystem;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 

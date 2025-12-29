@@ -4,6 +4,14 @@ namespace JustSupportSystem.Models
 {
     public class UserAccount : JDBBase
     {
+        [NotMapped]
+        public string FullName
+        {
+            get
+            {
+                return $"{FirstName} {LastName}";
+            }
+        }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? Email { get; set; }
@@ -22,5 +30,10 @@ namespace JustSupportSystem.Models
         public long? CompanyId { get; set; }
         public virtual Company? Company { get; set; }
         public virtual ICollection<Company>? Companies { get; set; }
+
+        public bool IsTOTPRequired { get; set; }
+        public string? TOTPSecret { get; set; }
+
+        public int FailedTries { get; set; }
     }
 }

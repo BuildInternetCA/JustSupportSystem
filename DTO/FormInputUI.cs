@@ -12,11 +12,11 @@ namespace JustSupportSystem.DTO
         {
             if (InputType.Hidden==Type)
             {
-                return @$"<input placeholder='type here...' value=""{Value}""  name=""{Label}""  type=""{Type.ToString().ToLower()}"" class=""form-input"" placeholder=""{Placeholder}"" {(IsRequired ? "required" : "")}>";
+                return @$"<input placeholder='type here...' value=""{Value}""  name=""{Label}""  type=""{Type.ToString().ToLower()}"" class=""form-control"" placeholder=""{Placeholder}"" {(IsRequired ? "required" : "")}>";
             }
-            return @$"<div class=""form-group"">
+            return @$"<div class=""mb-3"">
                         <label class=""form-label"">{Label} {(IsRequired ? "<span class=\"label-required\">*</span>" : "")}</label>
-                        <input placeholder='type here...' value=""{Value}""  name=""{Label}""  type=""{Type.ToString().ToLower()}"" class=""form-input"" placeholder=""{Placeholder}"" {(IsRequired ? "required" : "")}>
+                        <input placeholder='type here...' value=""{Value}""  name=""{Label}""  type=""{Type.ToString().ToLower()}"" class=""form-control"" placeholder=""{Placeholder}"" {(IsRequired ? "required" : "")}>
                     </div>";
         }
     }

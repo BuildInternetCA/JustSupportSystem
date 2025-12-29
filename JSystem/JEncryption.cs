@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 
-namespace JustSupportSystem.System
+namespace JustSupportSystem.JSystem
 {
     public static class JEncryption
     {
@@ -20,7 +20,7 @@ namespace JustSupportSystem.System
         }
 
         // Encrypt string using AES-256
-        public static string Encrypt(this string plainText)
+        public static string Encrypt(string plainText)
         {
             string base64Key = DataKey();
             if (string.IsNullOrEmpty(plainText))
@@ -55,7 +55,7 @@ namespace JustSupportSystem.System
         }
 
         // Decrypt string using AES-256
-        public static string Decrypt(this string cipherText)
+        public static string Decrypt(string cipherText)
         {
             string base64Key = DataKey();
             if (string.IsNullOrEmpty(cipherText))

@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Text;
 
-namespace JustSupportSystem.System
+namespace JustSupportSystem.JSystem
 {
     public static class HttpServices
     {
@@ -93,6 +93,15 @@ namespace JustSupportSystem.System
             if (request.Headers != null)
                 return request.Headers.ContainsKey("X-Requested-With") ? (request.Headers["X-Requested-With"] == "XMLHttpRequest") : request.Headers.ContainsKey("x-requested-with") ? (request.Headers["x-requested-with"] == "XMLHttpRequest") : false;
             return false;
+        }
+
+        public static string EncodeURL(this string data)
+        {
+           return System.Web.HttpUtility.UrlEncode(data);
+        }
+        public static string DecodeURL(this string data)
+        {
+            return System.Web.HttpUtility.UrlDecode(data);
         }
     }
 }

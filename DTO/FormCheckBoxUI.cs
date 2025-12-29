@@ -10,14 +10,14 @@ namespace JustSupportSystem.DTO
         {
             if (!string.IsNullOrEmpty(Value) && (Value.ToLower().Equals("true") || Value.Equals("1") || Value.ToLower().Equals("yes")))
             {
-                return @$"<div class=""form-group"">
+                return @$"<div class=""m-3"">
                         <label class=""form-label"">
                             <input name=""{Label}"" type=""checkbox"" class=""form-checkbox"" checked {(IsRequired ? "required" : "")}>
                             {Label} {(IsRequired ? "<span class=\"label-required\">*</span>" : "")}
                         </label>
                     </div>";
             }
-            return @$"<div class=""form-group"">
+            return @$"<div class=""m-3"">
                         <label class=""form-label"">
                             <input value=""1"" name=""{Label}"" type=""checkbox"" class=""form-checkbox"" {(IsRequired ? "required" : "")}>
                             {Label} {(IsRequired ? "<span class=\"label-required\">*</span>" : "")}

@@ -10,7 +10,7 @@ namespace JustSupportSystem.Models
         }
 
         public DbSet<UserAccount>? UserAccounts { get; set; }
-
+        public DbSet<UserToken> UserTokens { get; set; }
         public DbSet<Company>? Companies { get; set; }
         public DbSet<CustomFieldMaster>? CustomFieldMasters { get; set; }
         public DbSet<SupportTicketLog>? SupportTicketLogs { get; set; }
@@ -31,6 +31,14 @@ namespace JustSupportSystem.Models
                 .WithMany(c => c.Companies)
                .HasForeignKey(u => u.DefaultAgentId);
 
+        }
+    }
+
+    public static class JDatabaseExtensions
+    {
+        public static IQueryable<T> ListByPageNumber<T>(this IQueryable<T> data, int pageNo = 1, int pageSize = 12)
+        {
+            return data.OrderByDescending(p => (p as JDBBase).Id).Skip((pageNo - 1) * pageSize).Take(pageSize);
         }
     }
 }

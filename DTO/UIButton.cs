@@ -9,20 +9,20 @@ namespace JustSupportSystem.DTO
         public string? Icon { get; set; }
         public string? Title { get; set; }
         public string? Url { get; set; }
-        public string? CssClass { get; set; }
+        public string? CssClass { get; set; } = "btn-primary";
 
         public UIButtonType Type { get; set; } = UIButtonType.Primary;
         public string ToHtml()
         {
             if (Type == UIButtonType.Primary)
             {
-                return $"<a href=\"{Url}\" class=\"btn btn-0 {CssClass}\">{Icon} {Title}</a>";
+                return $"<a href=\"{Url}\" class=\"btn btn-1 mr-1 {CssClass}\">{Icon} {Title}</a>";
             }
             if (Type == UIButtonType.Secondary)
             {
-                return $"<a href=\"{Url}\" class=\"btn btn-0 {CssClass}\">{Icon} {Title} </a>";
+                return $"<a href=\"{Url}\" class=\"btn btn-1 mr-1 {CssClass}\">{Icon} {Title} </a>";
             }
-            return $"<a href=\"{Url}\" class=\"btn btn-0 {CssClass}\">{Icon} {Title}</a>";
+            return $"<a href=\"{Url}\" class=\"btn btn-1 mr-1  {CssClass}\">{Icon} {Title}</a>";
         }
         public string ToHtml(Dictionary<string, string> data)
         {

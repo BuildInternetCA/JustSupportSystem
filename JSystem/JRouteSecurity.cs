@@ -1,7 +1,8 @@
 ﻿using JustSupportSystem.Models;
 using Microsoft.AspNetCore.Rewrite;
+using Microsoft.EntityFrameworkCore;
 
-namespace JustSupportSystem.System
+namespace JustSupportSystem.JSystem
 {
     public class JRouteSecurity: IRule
     {
@@ -16,7 +17,7 @@ namespace JustSupportSystem.System
                 //{
                 //    ActivateTrafficLog(context.HttpContext, ContextDb);
                 //    CheckIPRestriction(context.HttpContext, ContextDb);
-                //    LoginSystemActivate(context.HttpContext, ContextDb);
+                    LoginSystemActivate(context.HttpContext, dbContext);
                 //}
                 // if (IsBot(context.HttpContext)) throw new Exception("Issue with website");
             }
@@ -121,34 +122,38 @@ namespace JustSupportSystem.System
         //        context.Items.Add("TrafficLogId", Log.Id);
         //    }
         //}
-        //private void LoginSystemActivate(HttpContext context, BIDBContext DbContext)
-        //{
-        //    UserToken user;
-        //    string token = context.GetCookie(BIExtensions.USER_COOKIE);
+        private void LoginSystemActivate(HttpContext context, JDBContext DbContext)
+        {
+            UserToken user;
+            string token = context.GetCookie("_adsense");
 
-        //    if (token != null && !token.Equals(""))
-        //    {
-        //        var tokenDb = DbContext.UserTokens.Include(p => p.UserAccount).AsNoTracking().ActiveRecords().FirstOrDefault(p => !p.IsExpired && p.Token == token && !p.IsEmailToken);
-        //        if (tokenDb != null)
-        //        {
-        //            user = tokenDb;
-        //            if (user != null)
-        //            {
-        //                if (user.UserAccount != null)
-        //                {
-        //                    if (user.UserAccount.UserRoleID == 2 && user.UserAccount.LoginPartner == LoginPartner.BuildInternet)
-        //                    {
-        //                        Log.UserId = user.UserAccount.Id;
-        //                        DbContext.TrafficLogs.Update(Log);
-        //                        DbContext.SaveChanges();
-        //                        context.Items.Add("APPDATAHTTP", user.UserAccount);
-        //                    }
-        //                }
-        //            }
-        //        }
+            if (token != null && !token.Equals(""))
+            {
+                var tokenDb = DbContext.UserTokens.Include(p => p.UserAccount).AsNoTracking().FirstOrDefault(p => p.Token == token);
+                if (tokenDb != null)
+                {
+                    var span = DateTime.UtcNow - tokenDb.DateAdded;
+                    if (span.TotalHours > 2)
+                    {
+                        DbContext.Remove(tokenDb);
+                        DbContext.SaveChanges();
+                        return;
+                    }
+                    if (!tokenDb.IsExpired && !tokenDb.IsDeleted && tokenDb.IsTOPTVerified)
+                    {
+                        user = tokenDb;
+                        if (user != null)
+                        {
+                            if (user.UserAccount != null)
+                            {
+                                context.Items.Add("APPDATAHTTP", user.UserAccount);
+                            }
+                        }
+                    }
+                }
 
-        //    }
+            }
 
-        //}
+        }
     }
 }

@@ -14,12 +14,12 @@ namespace JustSupportSystem.DTO
             foreach (var option in Options)
             {
                 optionsHtml.AppendLine($@"<label class=""form-radio-label"">
-                                             <input type=""radio"" name=""{Label}"" class=""form-radio"" value=""{option.Code}"" {(!string.IsNullOrEmpty(Value) && option.Code == Value ? "checked" : "")} {(IsRequired ? "required" : "")}>
+                                             <input type=""radio"" name=""{Label}"" class=""form-check-input"" value=""{option.Code}"" {(!string.IsNullOrEmpty(Value) && option.Code == Value ? "checked" : "")} {(IsRequired ? "required" : "")}>
                                              {option.Name}
                                          </label>");
             }
             return @$"<div class=""form-group"">
-                        <span class=""form-label"">{Label} {(IsRequired ? "<span class=\"label-required\">*</span>" : "")}</span>
+                        <span class=""form-check-label"">{Label} {(IsRequired ? "<span class=\"label-required\">*</span>" : "")}</span>
                         <div class=""form-radio-group"">
                             {optionsHtml.ToString()}
                         </div>

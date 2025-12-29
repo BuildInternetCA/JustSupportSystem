@@ -15,6 +15,13 @@ namespace JustSupportSystem.Models
         public virtual UserAccount? AssignedAgent { get; set; }
 
         //-----------------------------------------------------------
+        //-----------------------------------------------------------
+        public long? CompanyId { get; set; }
+
+        [ForeignKey("CompanyId")]
+        public virtual Company? Company { get; set; }
+
+        //-----------------------------------------------------------
         public long SupportTicketTypeId { get; set; }
 
         [ForeignKey("SupportTicketTypeId")]

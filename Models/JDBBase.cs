@@ -4,6 +4,12 @@ namespace JustSupportSystem.Models
 {
     public abstract class JDBBase
     {
+        public JDBBase() 
+        {
+            DateAdded = DateTime.UtcNow;
+            DateModified = DateTime.UtcNow;
+            IsDeleted = false; 
+        }
         [Key]
         public long Id { get; set; }
         public DateTime DateAdded { get; set; }

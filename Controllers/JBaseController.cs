@@ -1,4 +1,5 @@
 ﻿using JustSupportSystem.Models;
+using JustSupportSystem.JSystem;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -44,6 +45,51 @@ namespace JustSupportSystem.Controllers
         public IActionResult Table(object? model)
         {
             return View("/Views/Partial/Table.cshtml", model);
+        }
+        protected string GetToken()
+        {
+            return (DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() * 39).ToString().Encrypt().EncodeURL();
+        }
+
+        protected IActionResult SecureRedirect(string url, string queryWithoutQuestionMark="")
+        {
+            string token = GetToken();
+            url += "?token=" + token + queryWithoutQuestionMark;
+            return Content(@$"<html>
+                                <head>
+                                    <title>Loading page</title>
+                                </head>
+                                <body>
+                                   <script type='text/javascript'>
+                                        window.location.href = ""{url}"";
+                                    </script>
+                                </body>
+                                </html>", "text/html");
+        }
+
+        protected bool VerifyToken(string token)
+        {
+            try
+            {
+                long tokenVak = 0;
+                token = token.Decrypt().DecodeURL();
+                if (long.TryParse(token, out tokenVak))
+                {
+                    tokenVak = tokenVak / 39;
+                    var date = DateTimeOffset.FromUnixTimeMilliseconds(tokenVak);
+                    var span = DateTimeOffset.UtcNow - date;
+                    if (span.TotalMinutes > 5)
+                    {
+                        return false;
+                    }
+                    return true;
+                }
+            }
+            catch
+            {
+                // people never stop
+            }
+            return false;
         }
     }
 }

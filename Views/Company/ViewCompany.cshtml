@@ -1,0 +1,41 @@
+﻿@model CompanyViewDetailsDTO
+@{
+    ViewData["Title"] = Model.CompanyName;
+}
+
+<div class="card bg-primary-lt">
+    <div class="card-header card-header-light">
+        <div class="row w-full">
+            <div class="col">
+                <h3 class="card-title mb-0">@Model.CompanyName</h3>
+                <p class="text-secondary m-0">@Model.Notes</p>
+            </div>
+            <div class="col-md-auto col-sm-12">
+                <div class="ms-auto d-flex flex-wrap btn-list">
+                    <a href="/company/edit?id=@Model.CompanyId" class="btn btn-1 btn-primary "> Edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="datagrid">
+            <div class="datagrid-item">
+                <div class="datagrid-title">Customer Code</div>
+                <div class="datagrid-content">@Model.CompanyCode</div>
+            </div>
+            <div class="datagrid-item">
+                <div class="datagrid-title">Default Agent</div>
+                <div class="datagrid-content">@Model.DefaultAgent</div>
+            </div>
+            <div class="datagrid-item">
+                <div class="datagrid-title">Users</div>
+                <div class="datagrid-content">@Model.UserCount</div>
+            </div>
+            <div class="datagrid-item">
+                <div class="datagrid-title">Open Tickets</div>
+                <div class="datagrid-content">@Model.TicketCount</div>
+            </div>
+        </div>
+    </div>
+</div>
+@await Html.PartialAsync("/Views/Partial/Table.cshtml", Model.UserTable)

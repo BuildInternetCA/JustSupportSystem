@@ -9,9 +9,9 @@ namespace JustSupportSystem.DTO
         public int Rows { get; set; } = 4;
         public override string ToHtml()
         {
-            return @$"<div class=""form-group"">
+            return @$"<div class=""mb-3"">
                         <label class=""form-label"">{Label} {(IsRequired ? "<span class=\"label-required\">*</span>" : "")}</label>
-                        <textarea placeholder='type here...' name=""{Label}""  class=""form-textarea"" rows=""{Rows}"" placeholder=""{Placeholder}"" {(IsRequired ? "required" : "")}>{Value}</textarea>
+                        <textarea placeholder='type here...' name=""{Label}""  class=""form-control"" rows=""{Rows}"" placeholder=""{Placeholder}"" {(IsRequired ? "required" : "")}>{Value}</textarea>
                     </div>";
         }
     }

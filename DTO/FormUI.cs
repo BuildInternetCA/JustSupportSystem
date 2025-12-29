@@ -38,9 +38,17 @@ namespace JustSupportSystem.DTO
             {
                 inputsHtml.AppendLine(input.ToHtml());
             }
-            return @$"<form class=""form-ui"" action=""{ActionUrl}"" method=""{Method}"">
+            return @$"<form class=""card"" action=""{ActionUrl}"" method=""{Method}"">
+                         <div class=""card-header"">
+                            <h3 class=""card-title"">{Title}<br/><small class='text-secondary' style='font-weight:normal !Important;'>{Description}</small></h3>
+                          
+                        </div>
+                        <div class='card-body'>
                         {inputsHtml.ToString()}
-                        <button type=""submit"" class=""fb-btn fb-btn-success"">{SubmitButtonText}</button>
+                        </div>
+                        <div class=""card-footer text-end"">
+                            <button type=""submit"" class=""btn btn-primary"">{SubmitButtonText}</button>
+                          </div>
                     </form>";
         }
 

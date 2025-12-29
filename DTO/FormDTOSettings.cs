@@ -7,5 +7,6 @@
         public bool IsRequired { get; set; } = true;
         public List<CodeName>? Options { get; set; }
         public string? Value { get; set; }
+        public bool NonPropertyField { get; set; } = false;
     }
 }
